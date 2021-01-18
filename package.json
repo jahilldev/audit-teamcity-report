@@ -20,6 +20,7 @@
     "clean": "rimraf ./dist"
   },
   "dependencies": {
+    "@yarnpkg/lockfile": "^1.1.0",
     "npm-registry-fetch": "9.0.0",
     "teamcity-service-messages": "0.1.11",
     "yargs": "^16.2.0"
