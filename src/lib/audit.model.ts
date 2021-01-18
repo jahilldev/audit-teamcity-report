@@ -1,11 +1,39 @@
 /* -----------------------------------
  *
+ * IRequest
+ *
+ * -------------------------------- */
+
+interface IRequest {
+  name;
+  version;
+  requires: {
+    [key: string]: string;
+  };
+  dependencies: {
+    [key: string]: IDependency;
+  };
+}
+
+/* -----------------------------------
+ *
+ * IDependency
+ *
+ * -------------------------------- */
+
+interface IDependency {
+  version: string;
+}
+
+/* -----------------------------------
+ *
  * IReport
  *
  * -------------------------------- */
 
 interface IReport {
   actions: IAction[];
+  metadata: IMetaData;
   advisories: {
     [id: string]: IAdvisory;
   };
@@ -24,6 +52,23 @@ interface IAction {
   action: string;
   isMajor?: boolean;
   depth?: number;
+}
+
+/* -----------------------------------
+ *
+ * IMetaData
+ *
+ * -------------------------------- */
+
+interface IMetaData {
+  totalDependencies: number;
+  vulnerabilities: {
+    info: number;
+    low: number;
+    moderate: number;
+    high: number;
+    critical: number;
+  };
 }
 
 /* -----------------------------------
@@ -99,4 +144,4 @@ interface IFinding {
  *
  * -------------------------------- */
 
-export { IReport };
+export { IRequest, IReport };

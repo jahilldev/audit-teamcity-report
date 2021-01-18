@@ -1,6 +1,6 @@
 import { IOptions } from './lib/options.model';
 import { cliOptions } from './lib/cliOptions';
-import { readFile } from './lib/readFile';
+import { readDependencies } from './lib/readDependencies';
 import { outputReport } from './lib/outputReport';
 import { auditService } from './main';
 
@@ -11,8 +11,8 @@ import { auditService } from './main';
  * -------------------------------- */
 
 async function auditRunner(options: IOptions) {
-  const packageJson = await readFile('./package.json');
-  const result = await auditService(packageJson, options);
+  const project = await readDependencies(options);
+  const result = await auditService(project);
 
   outputReport(result);
 }

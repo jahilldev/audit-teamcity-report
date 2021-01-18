@@ -70,11 +70,12 @@ const shared: Configuration = {
  *
  * -------------------------------- */
 
-const main = Object.assign(shared, {
+const main = {
+  ...shared,
   entry: {
     main: path.join(__dirname, `./${config.path.src}/main.ts`),
   },
-});
+};
 
 /* -----------------------------------
  *
@@ -82,7 +83,8 @@ const main = Object.assign(shared, {
  *
  * -------------------------------- */
 
-const cli = Object.assign(shared, {
+const cli = {
+  ...shared,
   entry: {
     cli: path.join(__dirname, `./${config.path.src}/cli.ts`),
   },
@@ -95,7 +97,7 @@ const cli = Object.assign(shared, {
       raw: true,
     }),
   ],
-});
+};
 
 /* -----------------------------------
  *
