@@ -1,5 +1,5 @@
 import registry from 'npm-registry-fetch';
-import { IReport } from './audit.model';
+import { IReport } from './lib/audit.model';
 
 /* -----------------------------------
  *
@@ -27,9 +27,7 @@ async function auditService(packageJson: string): Promise<IReport> {
  * -------------------------------- */
 
 async function getRequestBody(packageJson: string) {
-  const { name, version, dependencies, devDependencies } = JSON.parse(
-    packageJson
-  );
+  const { name, version, dependencies, devDependencies } = JSON.parse(packageJson);
 
   const packages = Object.assign(dependencies, devDependencies);
   const keys = Object.keys(packages);
@@ -54,4 +52,4 @@ async function getRequestBody(packageJson: string) {
  *
  * -------------------------------- */
 
-export { auditService };
+export { IReport, auditService };

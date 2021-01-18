@@ -13,12 +13,11 @@ const RELEASE = process.env.NODE_ENV === 'production';
 
 /* -----------------------------------
  *
- * Client
+ * Shared
  *
  * -------------------------------- */
 
-const client: Configuration = {
-  entry: path.join(__dirname, `./${config.path.src}/cli.ts`),
+const shared: Configuration = {
   mode: RELEASE ? 'production' : 'development',
   target: 'node',
   externals: [nodeExternals()],
@@ -27,7 +26,7 @@ const client: Configuration = {
   cache: !RELEASE,
   output: {
     path: path.join(__dirname, `./${config.path.dist}`),
-    filename: 'cli.js',
+    filename: '[name].js',
   },
   resolve: {
     extensions: ['.ts', '.tsx', 'json'],
@@ -58,10 +57,6 @@ const client: Configuration = {
     new DefinePlugin({
       __DEV__: !RELEASE,
     }),
-    new BannerPlugin({
-      banner: '#! /usr/bin/env node',
-      raw: true,
-    }),
   ],
   stats: {
     colors: true,
@@ -71,8 +66,46 @@ const client: Configuration = {
 
 /* -----------------------------------
  *
+ * CLI
+ *
+ * -------------------------------- */
+
+const cli = Object.assign(shared, {
+  entry: {
+    cli: path.join(__dirname, `./${config.path.src}/cli.ts`),
+  },
+  plugins: [
+    new DefinePlugin({
+      __DEV__: !RELEASE,
+    }),
+    new BannerPlugin({
+      banner: '#! /usr/bin/env node',
+      raw: true,
+    }),
+  ],
+});
+
+/* -----------------------------------
+ *
+ * Main
+ *
+ * -------------------------------- */
+
+const main = Object.assign(shared, {
+  entry: {
+    main: path.join(__dirname, `./${config.path.src}/main.ts`),
+  },
+  plugins: [
+    new DefinePlugin({
+      __DEV__: !RELEASE,
+    }),
+  ],
+});
+
+/* -----------------------------------
+ *
  * Export
  *
  * -------------------------------- */
 
-export default client;
+export default [cli, main];
