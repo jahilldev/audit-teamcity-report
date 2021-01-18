@@ -27,9 +27,7 @@ async function readDependencies(options: IOptions): Promise<IRequest> {
   }
 
   if (packageLock) {
-    const data = formatPackage(JSON.parse(packageLock));
-
-    return { ...result, ...data };
+    return formatPackage(JSON.parse(packageLock));
   }
 
   if (yarnLock) {
