@@ -66,6 +66,18 @@ const shared: Configuration = {
 
 /* -----------------------------------
  *
+ * Main
+ *
+ * -------------------------------- */
+
+const main = Object.assign(shared, {
+  entry: {
+    main: path.join(__dirname, `./${config.path.src}/main.ts`),
+  },
+});
+
+/* -----------------------------------
+ *
  * CLI
  *
  * -------------------------------- */
@@ -87,25 +99,8 @@ const cli = Object.assign(shared, {
 
 /* -----------------------------------
  *
- * Main
- *
- * -------------------------------- */
-
-const main = Object.assign(shared, {
-  entry: {
-    main: path.join(__dirname, `./${config.path.src}/main.ts`),
-  },
-  plugins: [
-    new DefinePlugin({
-      __DEV__: !RELEASE,
-    }),
-  ],
-});
-
-/* -----------------------------------
- *
  * Export
  *
  * -------------------------------- */
 
-export default [cli, main];
+export default [main, cli];
