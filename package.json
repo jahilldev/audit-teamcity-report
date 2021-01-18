@@ -1,7 +1,8 @@
 {
   "name": "audit-teamcity-report",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "dist/main.js",
+  "types": "./dist/main.d.ts",
   "repository": "git@github.com:jhukdev/audit-teamcity-report.git",
   "author": "James Hill <contact@jameshill.dev>",
   "license": "MIT",
