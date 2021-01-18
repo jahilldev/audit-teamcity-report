@@ -1,4 +1,4 @@
-import { parse as parseYarn } from '@yarnpkg/lockfile';
+import { parse as parseYarnLock } from '@yarnpkg/lockfile';
 import { getYarnLockPackage } from './yarnLock';
 import { IOptions } from './options.model';
 import { IRequest } from './audit.model';
@@ -75,6 +75,8 @@ function formatPackage(packageJson: any): IRequest {
     return result;
   }, {});
 
+  console.log(packages);
+
   return {
     name,
     version,
@@ -90,7 +92,7 @@ function formatPackage(packageJson: any): IRequest {
  * -------------------------------- */
 
 function formatYarn(lockFile: string): Partial<IRequest> {
-  const { object: packages } = parseYarn(lockFile);
+  const { object: packages } = parseYarnLock(lockFile);
   const keys = Object.keys(packages);
 
   const requires = keys.reduce((result, key) => {
@@ -103,11 +105,14 @@ function formatYarn(lockFile: string): Partial<IRequest> {
 
   const manifest = keys.reduce((result, key) => {
     const name = getYarnLockPackage(key);
+    const { dependencies } = packages[key];
 
-    result[name] = { version: packages[key].version };
+    result[name] = { ...packages[key], requires: dependencies };
 
     return result;
   }, {});
+
+  console.log(manifest);
 
   return {
     requires,
