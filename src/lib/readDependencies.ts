@@ -67,7 +67,9 @@ function formatPackage(fileContents: string): IRequest {
   const keys = Object.keys(packages);
 
   const manifest = keys.reduce((result, key) => {
-    result[key] = { version: packages[key] };
+    const { version = packages[key] } = packages[key];
+
+    result[key] = { version };
 
     return result;
   }, {});

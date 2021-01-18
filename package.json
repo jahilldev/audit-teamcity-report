@@ -1,6 +1,6 @@
 {
   "name": "audit-teamcity-report",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "./dist/main.js",
   "types": "./dist/main.d.ts",
   "repository": "git@github.com:jhukdev/audit-teamcity-report.git",
