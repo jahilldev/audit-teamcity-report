@@ -2,7 +2,7 @@
   "trailingComma": "es5",
   "tabWidth": 2,
   "semi": true,
-  "printWidth": 84,
+  "printWidth": 92,
   "singleQuote": true,
   "eslintIntegration": false,
   "tslintIntegration": true

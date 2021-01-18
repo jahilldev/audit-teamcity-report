@@ -1,5 +1,6 @@
 import registry from 'npm-registry-fetch';
 import { IReport } from './lib/audit.model';
+import { IOptions } from './lib/options.model';
 
 /* -----------------------------------
  *
@@ -7,8 +8,8 @@ import { IReport } from './lib/audit.model';
  *
  * -------------------------------- */
 
-async function auditService(packageJson: string): Promise<IReport> {
-  const options = {
+async function auditService(packageJson: string, options: IOptions): Promise<IReport> {
+  const config = {
     color: true,
     json: true,
     unicode: true,
@@ -17,7 +18,7 @@ async function auditService(packageJson: string): Promise<IReport> {
     body: await getRequestBody(packageJson),
   };
 
-  return registry.json('/-/npm/v1/security/audits', options);
+  return registry.json('/-/npm/v1/security/audits', config);
 }
 
 /* -----------------------------------

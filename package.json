@@ -20,7 +20,8 @@
   },
   "dependencies": {
     "npm-registry-fetch": "9.0.0",
-    "teamcity-service-messages": "0.1.11"
+    "teamcity-service-messages": "0.1.11",
+    "yargs": "^16.2.0"
   },
   "devDependencies": {
     "eslint": "7.18.0",
