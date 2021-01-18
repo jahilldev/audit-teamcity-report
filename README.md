@@ -1,5 +1,7 @@
 `audit-teamcity-report` is a simple CLI and library that prints out an NPM package audit in TeamCity service message format. Useful for running security audits in CI/CD, and monitoring changes.
 
+This package calls the NPM restful API directly to gather security vulnerability data and suggestions. This makes it faster than running `npm audit` and then using the output to generate readable TeamCity service messages.
+
 # Getting Started
 
 Install with Yarn:
