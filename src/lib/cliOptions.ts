@@ -8,7 +8,7 @@ import { IOptions } from './options.model';
  * -------------------------------- */
 
 const cliOptions: IOptions = {
-  auditChildren: !!argv.auditChildren,
+  topLevelOnly: !!argv.topLevelOnly,
 };
 
 /* -----------------------------------

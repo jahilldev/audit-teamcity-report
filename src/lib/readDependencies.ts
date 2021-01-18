@@ -19,18 +19,18 @@ const manifestFiles = ['package.json', 'package-lock.json', 'yarn.lock'];
 
 async function readDependencies(options: IOptions): Promise<IRequest> {
   const [packageJson, packageLock, yarnLock] = await readManifests();
-  const result = formatPackage(JSON.parse(packageJson));
+  const result = formatPackage(packageJson);
 
-  if (!options.auditChildren) {
+  if (options.topLevelOnly) {
     return result;
   }
 
   if (packageLock) {
-    return formatPackage(JSON.parse(packageLock));
+    return formatPackage(packageLock);
   }
 
   if (yarnLock) {
-    return formatPackage(JSON.parse(yarnToNpm('./')));
+    return formatPackage(yarnToNpm('./'));
   }
 
   return result;
@@ -60,8 +60,8 @@ async function readManifests() {
  *
  * -------------------------------- */
 
-function formatPackage(packageJson: any): IRequest {
-  const { name, version, dependencies, devDependencies = {} } = packageJson;
+function formatPackage(fileContents: string): IRequest {
+  const { name, version, dependencies, devDependencies = {} } = JSON.parse(fileContents);
 
   const packages = Object.assign(dependencies, devDependencies);
   const keys = Object.keys(packages);

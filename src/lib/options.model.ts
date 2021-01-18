@@ -6,10 +6,10 @@
 
 interface IOptions {
   /**
-   * Run security audit on child packages, e.g
-   * dependencies of your dependencies
+   * Only audit packages installed directly
+   * into your project, e.g no child dependencies
    */
-  auditChildren: boolean;
+  topLevelOnly: boolean;
 }
 
 /* -----------------------------------
