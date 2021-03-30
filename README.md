@@ -16,6 +16,12 @@ Install with NPM:
 $ npm i --save-dev audit-teamcity-report
 ```
 
+# Demo
+
+When the audit identifies vulnerabilities for your packages, a new tab for that build labeled "Code Inspection" will appear. You'll get a list of all packages that require an update, with a description and link to the advisory.
+
+![alt text](demo.png)
+
 # Useage
 
 The package can be used in two ways, via the CLI or by consuming the exported functions. `audit-teamcity-report` will, by default, load your `package.json` file from the current working directory. It'll then check for a `package-lock.json` file, if this isn't found, it will try and load a `yarn.lock` file. If neither lock files are found, it'll run an audit on your top level dependencies only.
