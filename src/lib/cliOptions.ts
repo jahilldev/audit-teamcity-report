@@ -1,5 +1,15 @@
-import { argv } from 'yargs';
+import yargs from 'yargs';
 import { IOptions } from './options.model';
+
+/* -----------------------------------
+ *
+ * API
+ *
+ * -------------------------------- */
+
+const argv = yargs(process.argv.slice(2)).options({
+  topLevelOnly: { type: 'boolean', default: false }
+}).parseSync();
 
 /* -----------------------------------
  *
@@ -8,7 +18,7 @@ import { IOptions } from './options.model';
  * -------------------------------- */
 
 const cliOptions: IOptions = {
-  topLevelOnly: !!argv.topLevelOnly,
+  topLevelOnly: argv.topLevelOnly
 };
 
 /* -----------------------------------
